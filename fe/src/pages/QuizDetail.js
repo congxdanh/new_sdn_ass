@@ -79,12 +79,12 @@ const QuizDetail = () => {
     const fetchQuizDetails = async () => {
       try {
         const quizResponse = await axios.get(
-          `http://localhost:3001/quizzes/${quizId}`
+          `https://sdn-ass1.onrender.com/quizzes/${quizId}`
         );
         setQuiz(quizResponse.data.data.quiz);
 
         const questionResponse = await axios.get(
-          `http://localhost:3001/quizzes/${quizId}/populate`
+          `https://sdn-ass1.onrender.com/quizzes/${quizId}/populate`
         );
         setQuestions(questionResponse.data.data.quiz.questions);
       } catch (error) {
