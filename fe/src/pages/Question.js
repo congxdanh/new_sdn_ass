@@ -114,7 +114,9 @@ const Question = () => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await axios.get("http://localhost:3001/questions");
+      const response = await axios.get(
+        "https://sdn-ass1.onrender.com/questions"
+      );
       setQuestions(response.data.data.questions);
     };
     fetchQuestions();
@@ -163,7 +165,9 @@ const Question = () => {
 
   const handleDelete = async (questionId) => {
     try {
-      await axios.delete(`http://localhost:3001/questions/${questionId}`);
+      await axios.delete(
+        `https://sdn-ass1.onrender.com/questions/${questionId}`
+      );
       setQuestions(questions.filter((question) => question._id !== questionId));
     } catch (error) {
       console.error("Error deleting question:", error);

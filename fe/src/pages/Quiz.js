@@ -113,7 +113,7 @@ const Quiz = () => {
 
   useEffect(() => {
     const fetchQuizzes = async () => {
-      const response = await axios.get("http://localhost:3001/quizzes");
+      const response = await axios.get("https://sdn-ass1.onrender.com/quizzes");
       setQuizzes(response.data.data.quizzes);
     };
     fetchQuizzes();
@@ -123,10 +123,10 @@ const Quiz = () => {
     e.preventDefault();
     try {
       const newQuiz = { title, description };
-      await axios.post("http://localhost:3001/quizzes", newQuiz);
+      await axios.post("https://sdn-ass1.onrender.com/quizzes", newQuiz);
       setTitle("");
       setDescription("");
-      const response = await axios.get("http://localhost:3001/quizzes");
+      const response = await axios.get("https://sdn-ass1.onrender.com/quizzes");
       setQuizzes(response.data.data.quizzes);
     } catch (error) {
       console.error("Error creating new quiz:", error);
@@ -144,13 +144,13 @@ const Quiz = () => {
     try {
       const updatedQuiz = { title, description };
       await axios.patch(
-        `http://localhost:3001/quizzes/${editingQuiz._id}`,
+        `https://sdn-ass1.onrender.com/quizzes/${editingQuiz._id}`,
         updatedQuiz
       );
       setTitle("");
       setDescription("");
       setEditingQuiz(null);
-      const response = await axios.get("http://localhost:3001/quizzes");
+      const response = await axios.get("https://sdn-ass1.onrender.com/quizzes");
       setQuizzes(response.data.data.quizzes);
     } catch (error) {
       console.error("Error updating quiz:", error);
@@ -159,7 +159,7 @@ const Quiz = () => {
 
   const handleDelete = async (quizId) => {
     try {
-      await axios.delete(`http://localhost:3001/quizzes/${quizId}`);
+      await axios.delete(`https://sdn-ass1.onrender.com/quizzes/${quizId}`);
       setQuizzes(quizzes.filter((quiz) => quiz._id !== quizId));
     } catch (error) {
       console.error("Error deleting quiz:", error);
