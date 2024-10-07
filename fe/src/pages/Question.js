@@ -134,19 +134,19 @@ const Question = () => {
       if (editingQuestion) {
         // Update question
         await axios.patch(
-          `http://localhost:3001/questions/${editingQuestion._id}`,
+          `https://sdn-ass1.onrender.com/questions/${editingQuestion._id}`,
           newQuestion
         );
         setEditingQuestion(null);
       } else {
         // Create new question
-        await axios.post("http://localhost:3001/questions", newQuestion);
+        await axios.post("https://sdn-ass1.onrender.com/questions", newQuestion);
       }
 
       setText("");
       setOptions(["", "", "", ""]);
       setCorrectAnswerIndex(0);
-      const response = await axios.get("http://localhost:3001/questions");
+      const response = await axios.get("https://sdn-ass1.onrender.com/questions");
       setQuestions(response.data.data.questions);
     } catch (error) {
       console.error("Error creating or updating question:", error);
