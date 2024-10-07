@@ -18,9 +18,33 @@ exports.getAllQuestions = async (req, res) => {
   }
 };
 
+// exports.getQuestion = async (req, res) => {
+//   try {
+//     const question = await Question.findById(req.params.questionId);
+//     res.status(200).json({
+//       status: "success",
+//       data: {
+//         question,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "fail",
+//       message: err,
+//     });
+//   }
+// };
 exports.getQuestion = async (req, res) => {
   try {
     const question = await Question.findById(req.params.questionId);
+
+    if (!question) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Question not found",
+      });
+    }
+
     res.status(200).json({
       status: "success",
       data: {
@@ -28,9 +52,9 @@ exports.getQuestion = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(400).json({
       status: "fail",
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -68,16 +92,57 @@ exports.createQuestion = async (req, res) => {
   }
 };
 
+// exports.updateQuestion = async (req, res) => {
+//   try {
+//     const question = await Question.findByIdAndUpdate(
+//       req.params.questionId,
+//       req.body,
+//       {
+//         new: true,
+//         runValidators: true,
+//       }
+//     );
+
+//     res.status(200).json({
+//       status: "success",
+//       data: {
+//         question,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "fail",
+//       message: err,
+//     });
+//   }
+// };
 exports.updateQuestion = async (req, res) => {
   try {
+    // Kiểm tra nếu dữ liệu gửi lên không hợp lệ
+    if (
+      !req.body.text ||
+      !req.body.options ||
+      req.body.correctAnswerIndex === undefined
+    ) {
+      return res.status(400).json({
+        status: "fail",
+        message:
+          "Invalid data. Please provide text, options, and correctAnswerIndex.",
+      });
+    }
+
     const question = await Question.findByIdAndUpdate(
       req.params.questionId,
       req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
+      { new: true, runValidators: true }
     );
+
+    if (!question) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Question not found",
+      });
+    }
 
     res.status(200).json({
       status: "success",
@@ -86,9 +151,9 @@ exports.updateQuestion = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(400).json({
       status: "fail",
-      message: err,
+      message: err.message,
     });
   }
 };

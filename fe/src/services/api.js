@@ -1,8 +1,9 @@
 import axios from "axios";
+require.config("dotenv");
 
 // Cấu hình base URL cho axios
 const api = axios.create({
-  baseURL: "http://localhost:3001", // URL gốc cho các yêu cầu API
+  baseURL: process.env.PORT, // URL gốc cho các yêu cầu API
 });
 
 // Hàm lấy tất cả các quiz
