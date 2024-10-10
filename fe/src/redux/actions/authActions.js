@@ -9,16 +9,18 @@ import {
   registerSuccess,
 } from "../reducers/authSlice";
 
+const api = axios.create({
+  baseURL: "https://new-sdn-ass-be.onrender.com", // URL gốc cho các yêu cầu API
+});
+
 export const loginUser = async (user, dispatch, navigate) => {
   dispatch(loginStart());
   try {
-    const res = await axios.post(
-      "https://new-sdn-ass-be.onrender.com//auth/login",
-      user
-    );
+    const res = await api.post(`/auth/login`, user);
     dispatch(loginSuccess(res.data));
     navigate("/");
   } catch (error) {
+    console.log("dsadas");
     dispatch(loginFail());
   }
 };
@@ -26,10 +28,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
   dispatch(registerStart());
   try {
-    await axios.post(
-      "https://new-sdn-ass-be.onrender.com//auth/register",
-      user
-    );
+    await api.post("/auth/register", user);
     dispatch(registerSuccess());
     navigate("/login");
   } catch (error) {

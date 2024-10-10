@@ -3,7 +3,7 @@ require.config("dotenv");
 
 // Cấu hình base URL cho axios
 const api = axios.create({
-  baseURL: "https://new-sdn-ass-be.onrender.com/", // URL gốc cho các yêu cầu API
+  baseURL: "https://new-sdn-ass-be.onrender.com", // URL gốc cho các yêu cầu API
 });
 
 // Hàm lấy tất cả các quiz
