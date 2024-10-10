@@ -14,9 +14,9 @@ connectDB();
 // Middleware để sử dụng CORS
 app.use(cors());
 app.use(cookieParser());
-app.options(
-  "*",
+app.use(
   cors({
+    origin: "*", // Hoặc chỉ định domain frontend của bạn nếu có
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
