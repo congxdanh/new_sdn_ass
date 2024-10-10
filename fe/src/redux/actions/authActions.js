@@ -20,7 +20,6 @@ export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginSuccess(res.data));
     navigate("/");
   } catch (error) {
-    console.log("dsadas");
     dispatch(loginFail());
   }
 };

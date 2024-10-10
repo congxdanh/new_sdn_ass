@@ -12,7 +12,7 @@ router
   );
 
 // Endpoint cho /users/login - cho phép bất kỳ người dùng nào đăng nhập
-router.post("/register", userController.registerUser);
-router.post("/login", userController.login);
+router.post("auth/register", userController.registerUser);
+router.post("auth/login", userController.login);
 
 module.exports = router;

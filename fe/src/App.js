@@ -6,7 +6,7 @@ import Question from "./pages/Question";
 import QuizDetail from "./pages/QuizDetail";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import Register from "./pages/Register";
 
 function App() {
