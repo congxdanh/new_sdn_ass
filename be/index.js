@@ -14,7 +14,12 @@ connectDB();
 // Middleware để sử dụng CORS
 app.use(cors());
 app.use(cookieParser());
-app.options("*", cors());
+app.options(
+  "*",
+  cors({
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 // Middleware để parse JSON
 app.use(express.json());
