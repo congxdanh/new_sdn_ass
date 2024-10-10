@@ -153,16 +153,16 @@ const Question = () => {
           "https://sdn-ass1.onrender.com/questions",
           newQuestion
         );
-      }
 
-      // Reset form và cập nhật danh sách câu hỏi
-      setText("");
-      setOptions(["", "", "", ""]);
-      setCorrectAnswerIndex(0);
-      const updatedResponse = await axios.get(
-        "https://sdn-ass1.onrender.com/questions"
-      );
-      setQuestions(updatedResponse.data.data.questions);
+        // Reset form và cập nhật danh sách câu hỏi
+        setText("");
+        setOptions(["", "", "", ""]);
+        setCorrectAnswerIndex(0);
+        const updatedResponse = await axios.get(
+          "https://sdn-ass1.onrender.com/questions"
+        );
+        setQuestions(updatedResponse.data.data.questions);
+      }
     } catch (error) {
       console.error("Error creating or updating question:", error);
       if (error.response) {
