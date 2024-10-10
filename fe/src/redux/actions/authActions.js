@@ -13,7 +13,7 @@ export const loginUser = async (user, dispatch, navigate) => {
   dispatch(loginStart());
   try {
     const res = await axios.post(
-      "https://sdn-ass1.onrender.com/auth/login",
+      "https://new-sdn-ass-be.onrender.com//auth/login",
       user
     );
     dispatch(loginSuccess(res.data));
@@ -26,7 +26,10 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
   dispatch(registerStart());
   try {
-    await axios.post("http://localhost:3001/auth/register", user);
+    await axios.post(
+      "https://new-sdn-ass-be.onrender.com//auth/register",
+      user
+    );
     dispatch(registerSuccess());
     navigate("/login");
   } catch (error) {
