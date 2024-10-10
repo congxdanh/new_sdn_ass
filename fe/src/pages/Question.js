@@ -114,10 +114,14 @@ const Question = () => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await axios.get(
-        "https://sdn-ass1.onrender.com/questions"
-      );
-      setQuestions(response.data.data.questions);
+      try {
+        const response = await axios.get(
+          "https://sdn-ass1.onrender.com/questions"
+        );
+        setQuestions(response.data.data.questions);
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+      }
     };
     fetchQuestions();
   }, []);
@@ -133,21 +137,32 @@ const Question = () => {
 
       if (editingQuestion) {
         // Update question
-        await axios.patch(
-          `http://localhost:3001/questions/${editingQuestion._id}`,
+        const response = await axios.patch(
+          `https://sdn-ass1.onrender.com/questions/${editingQuestion._id}`,
           newQuestion
         );
-        setEditingQuestion(null);
+
+        if (response.status === 200 || response.status === 204) {
+          setEditingQuestion(null);
+        } else {
+          console.error("Update failed with status:", response.status);
+        }
       } else {
         // Create new question
-        await axios.post("http://localhost:3001/questions", newQuestion);
+        await axios.post(
+          "https://sdn-ass1.onrender.com/questions",
+          newQuestion
+        );
       }
 
+      // Reset form và cập nhật danh sách câu hỏi
       setText("");
       setOptions(["", "", "", ""]);
       setCorrectAnswerIndex(0);
-      const response = await axios.get("http://localhost:3001/questions");
-      setQuestions(response.data.data.questions);
+      const updatedResponse = await axios.get(
+        "https://sdn-ass1.onrender.com/questions"
+      );
+      setQuestions(updatedResponse.data.data.questions);
     } catch (error) {
       console.error("Error creating or updating question:", error);
       if (error.response) {

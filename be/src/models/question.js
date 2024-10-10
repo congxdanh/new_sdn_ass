@@ -22,6 +22,11 @@ const questionModel = new mongoose.Schema({
       message: "Correct answer index can not be larger than options length",
     },
   },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User", // Tham chiếu đến model User
+    required: [true, "Author is required for a question"],
+  },
 });
 
 const Question = mongoose.model("Question", questionModel);

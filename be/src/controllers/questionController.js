@@ -1,5 +1,5 @@
-const Question = require("../models/question");
-const Quiz = require("../models/quizz");
+const Question = require("../models/Question");
+const Quiz = require("../models/Quizz");
 
 exports.getAllQuestions = async (req, res) => {
   try {

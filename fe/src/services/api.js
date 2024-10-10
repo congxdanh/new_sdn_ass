@@ -3,7 +3,7 @@ require.config("dotenv");
 
 // Cấu hình base URL cho axios
 const api = axios.create({
-  baseURL: process.env.API_URL, // URL gốc cho các yêu cầu API
+  baseURL: "http://localhost:3001", // URL gốc cho các yêu cầu API
 });
 
 // Hàm lấy tất cả các quiz
